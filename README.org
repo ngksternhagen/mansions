@@ -1,0 +1,39 @@
+* goals
+** I want to manage a "workspaces"-like set of features with an emphasis on using lisp
+** persp-mode is popular, but I spent most of a saturday morning trying to use it in spacemacs and the learning curve seemed unfavorable.
+** my requirements:
+    - don't care about multiple frames since I never use this feature of emacs.
+    - will be managing these workspaces per-project, but in some cases (such as gnus for example) there will not be a project.
+    - want to be able to write the lisp directly, or invoke a function that tries to create the lisp given the state of emacs at the time the generator executes
+
+    - do _not_ want to wire any of this into core emacs functions -- if the package breaks in some way I want to be able to recover without restarting emacs.
+    - do _not_ want to shadow or overload any names. so words like "layouts" and "workspaces" are off limits.
+
+* implementation notes
+** inputs, outputs, error conditions
+  - input: interactive command mansion-create-here, with global config
+    - output: should output emacs lisp source file that approximates "what is currently
+      visible" in emacs.
+    - error: 
+  - input: interactive command mansion-load-from-project
+    - output: find a mansion lisp file inside a "project"
+    - error: 
+  - input: interactive command mansion-load-from-global
+    - output: 
+    - error: 
+  - global config:
+    - "special" ephemeral buffers
+      - we check for these and include them in mansions
+        - *scratch*
+        - buffers with shells
+        - buffers associated with programs like gnus
+** outputs 
+** error conditions
+
+** related data structures, functions, files, packages
+- list of buffers now open
+- the files that those buffers are visiting
+- user-defined list of special buffers, like *scratch*
+
+
+
